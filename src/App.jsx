@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 
 export default function App() {
@@ -6,7 +6,15 @@ export default function App() {
   // 7. On crée l'état grace au hook useState où on save l'état de la variable user qui est un objet vide par défault
   const [user, setUser] = useState({});
 
+  const [listeUsers, setListeUsers] = useState([]);
+
   // 2. On a créer une function getData qui va récupérer les valeurs des inputs
+
+  function getUsers() {
+    fetch('https://jsonplaceholder.typicode.com/users')
+      .then(response => response.json())
+      .then(data => setListeUsers(data))
+  }
 
   function getData(event) {
     // 4. On utilise le event.preventDefault() pour éviter l'actualisation de la page et le comportement par défaut de l'event
@@ -40,8 +48,18 @@ export default function App() {
 
   }
 
+  useEffect(() => {
+    getUsers()
+  }, []);
   return (
     <div className="App">
+      {listeUsers.map(e => {
+        return <div>
+          <h1>Name: {e.name}</h1>
+          <h3>Username : {e.username}</h3>
+          <h3>City : {e.address.city}</h3>
+        </div>
+      })}
       {/* 9. On affiche l'objet user dans le HTML */}
       <div>
         <h1>{user.name}</h1>
