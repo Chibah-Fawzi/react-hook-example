@@ -27,12 +27,13 @@ export default function App() {
         alert('Le mot de passe doit être plus grand que 6')
       } else {
         // 8. On change la valeur de la variable user par les nouvelles valeurs entré par l'utilisateur
-        setUser({
+        const newUser = {
           name: name,
           age: age,
           email: email,
           pwd: pwd
-        })
+        }
+        setUser(newUser)
       }
     }
 
