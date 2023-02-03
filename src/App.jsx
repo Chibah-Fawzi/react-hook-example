@@ -10,9 +10,13 @@ export default function App() {
 
   // 2. On a créer une function getData qui va récupérer les valeurs des inputs
 
+  // Function qui récupére une liste de users
   function getUsers() {
+    // On cherche les données qui sont dans ce lien
     fetch('https://jsonplaceholder.typicode.com/users')
+      // Aprés avoir récupérer la donnée, convertis les en format JSON
       .then(response => response.json())
+      // Aprés la converssion, store les données dans le hook listeUsers
       .then(data => setListeUsers(data))
   }
 
