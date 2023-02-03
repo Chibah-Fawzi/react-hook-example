@@ -52,6 +52,7 @@ export default function App() {
 
   }
 
+  // On éxécute la function juste aprés le render une seule fois
   useEffect(() => {
     getUsers()
   }, []);
